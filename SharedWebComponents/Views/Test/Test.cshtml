@@ -1,0 +1,26 @@
+﻿@model SharedWebComponents.Models.TestViewModel
+
+<div style="background-color: lightgoldenrodyellow">
+    <span>@(Model.Greeting), I'm a test partial view</span>
+</div>
+<script type="text/javascript">
+    (function ($) {
+        if (!$) {
+            throw new Error('jQuery was not defined');
+        }
+        $(function() {
+            $.ajax({
+                type: 'POST',
+                url: '@(Url.Action("GetJsonResult", "Test"))',
+                data: { input: 'test input' },
+                success: function(data) {
+                    console.log('received data using ajax to a shared controller from shared partial view');
+                    console.log('data received: ' + data.input);
+                },
+                error: function () {
+                    console.log('failed to receive data using ajax to a shared controller from shared partial view');
+                }
+            });
+        });
+    }(jQuery));
+</script>
