@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Reflection;
 using SharedWebComponents.Utility;
 
 namespace SharedWebComponents.VirtualFileRouting {
@@ -13,7 +14,9 @@ namespace SharedWebComponents.VirtualFileRouting {
                 result = reader.ReadToEnd();
             }
             var modelString = GetModelString(result);
-            result = RemoveModelDeclaration(result);
+            if (!string.IsNullOrWhiteSpace(modelString)) {
+                result = RemoveModelDeclaration(result);
+            }
             var inheritsAndModelString = GetInheritsAndModelString(modelString);
             result = inheritsAndModelString + result;
             return result;
@@ -34,6 +37,10 @@ namespace SharedWebComponents.VirtualFileRouting {
 
         static string GetModelString(string input) {
             var model = input.BetweenExclusive("@model", Environment.NewLine).Trim();
+            var type = Type.GetType(model, false);
+            if (type == null) {
+                return null;
+            }
             var result = String.IsNullOrWhiteSpace(model) ? "" : "<" + model + ">";
             return result;
         }

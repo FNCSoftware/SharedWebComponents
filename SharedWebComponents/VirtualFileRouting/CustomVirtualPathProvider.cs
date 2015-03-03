@@ -7,8 +7,8 @@ using System.Web.Hosting;
 namespace SharedWebComponents.VirtualFileRouting {
     public class CustomVirtualPathProvider : VirtualPathProvider {
         static bool IsEmbeddedResourcePath(string virtualPath) {
-            var checkPath = VirtualPathUtility.ToAppRelative(virtualPath);
-            var result = checkPath.StartsWith("~/SharedWebComponents/", StringComparison.InvariantCultureIgnoreCase);
+            var appRelativePath = VirtualPathUtility.ToAppRelative(virtualPath);
+            var result = appRelativePath.Contains("/SharedWebComponents/");
             return result;
         }
 
