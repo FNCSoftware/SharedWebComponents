@@ -6,10 +6,10 @@ using System.Reflection;
 
 namespace SharedWebComponents.VirtualFileRouting {
     internal class VirtualFileStreamFetcher {
-        public Stream GetStream(Assembly assembly, string resourceName, IEnumerable<string> parts) {
+        public Stream GetStream(Assembly assembly, string resourceName, string fileName) {
             var manifestResourceStream = assembly.GetManifestResourceStream(resourceName);
             if (manifestResourceStream == null) {
-                manifestResourceStream = GetByResourceName(assembly, parts);
+                manifestResourceStream = GetByResourceName(assembly, fileName);
             }
             if (manifestResourceStream == null) {
                 throw new Exception("Failed to find resource: " + resourceName);
@@ -23,9 +23,9 @@ namespace SharedWebComponents.VirtualFileRouting {
             return result;
         }
 
-        static Stream GetByResourceName(Assembly assembly, IEnumerable<string> parts) {
+        static Stream GetByResourceName(Assembly assembly, string resourceName) {
             var names = assembly.GetManifestResourceNames();
-            var matchingNames = names.Where(x => x.EndsWith("." + parts.Last())).ToList();
+            var matchingNames = names.Where(x => x.EndsWith("." + resourceName)).ToList();
             if (matchingNames.Count() == 1) {
                 return assembly.GetManifestResourceStream(matchingNames.First());
             }

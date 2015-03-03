@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Web;
 
@@ -21,7 +22,7 @@ namespace SharedWebComponents.VirtualFileRouting {
             //var assembly = Assembly.LoadFile(assemblyName + ".dll");
             var assembly = Assembly.GetExecutingAssembly();
 
-            return _streamFetcher.GetStream(assembly, resourceName, parts);
+            return _streamFetcher.GetStream(assembly, resourceName, parts.Last());
         }
     }
 }
