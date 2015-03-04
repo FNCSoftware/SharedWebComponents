@@ -114,13 +114,9 @@
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Models\TestViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="VirtualFileRouting\CustomViewEngine.cs" />
+    <Compile Include="CustomViewEngine.cs" />
     <Compile Include="Utility\SharedWebComponentConfigurator.cs" />
-    <Compile Include="VirtualFileRouting\CustomVirtualFile.cs" />
-    <Compile Include="VirtualFileRouting\CustomVirtualPathProvider.cs" />
     <Compile Include="Utility\StringExtensions.cs" />
-    <Compile Include="VirtualFileRouting\VirtualFileRazorViewHelper.cs" />
-    <Compile Include="VirtualFileRouting\VirtualFileStreamFetcher.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Web.config" />
@@ -156,12 +152,6 @@
   <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
     <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
   </Target>
-  <Target Name="BeforeBuild">
-    <ItemGroup>
-      <Content Remove="Views\**\*.cshtml" />
-      <EmbeddedResource Include="Views\**\*.cshtml" />
-    </ItemGroup>
-  </Target>
   <ProjectExtensions>
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
@@ -180,6 +170,9 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <PropertyGroup>
+    <PostBuildEvent>xcopy "$(ProjectDir)Views" "$(SolutionDir)WebApplication1\SharedWebComponents\Views"  /Y /I /E</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
