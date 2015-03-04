@@ -15,13 +15,8 @@ namespace SharedWebComponents.VirtualFileRouting {
 
         public override Stream Open() {
             var parts = _path.Split('/');
-            //var assemblyName = parts[1];
             var resourceName = _path.Replace("~/", "").Replace("/", ".");
-
-            //assemblyName = Path.Combine(HttpRuntime.BinDirectory, assemblyName);
-            //var assembly = Assembly.LoadFile(assemblyName + ".dll");
             var assembly = Assembly.GetExecutingAssembly();
-
             return _streamFetcher.GetStream(assembly, resourceName, parts.Last());
         }
     }
