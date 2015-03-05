@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -14,12 +13,10 @@ namespace SharedWebComponents.VirtualFileRouting {
             if (manifestResourceStream == null) {
                 throw new Exception("Failed to find resource: " + resourceName);
             }
-
-            //var stream = new MemoryStream();
-            //manifestResourceStream.CopyTo(stream);
-            //stream.Position = 0;
-            //manifestResourceStream.Position = 0;
-            var result = GetPrependedViewStream(manifestResourceStream);
+            var result = manifestResourceStream;
+            if (fileName.EndsWith(".cshtml")) {
+                result = GetPrependedViewStream(manifestResourceStream);
+            }
             return result;
         }
 
@@ -39,10 +36,6 @@ namespace SharedWebComponents.VirtualFileRouting {
             writer.Write(view);
             writer.Flush();
             result.Position = 0;
-            //using (var reader = new StreamReader(memoryStream))
-            //{
-            //    var view = reader.ReadToEnd();
-            //}
 
             return result;
         }

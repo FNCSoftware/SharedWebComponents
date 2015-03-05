@@ -8,6 +8,7 @@ namespace SharedWebComponents.Utility {
             ViewEngines.Engines.Clear();
             ViewEngines.Engines.Add(new CustomViewEngine());
             HostingEnvironment.RegisterVirtualPathProvider(new CustomVirtualPathProvider());
+            EmbeddedResourceRouteConfigurator.Configure();
         }
     }
 }

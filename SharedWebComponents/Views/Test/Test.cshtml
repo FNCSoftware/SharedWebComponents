@@ -1,9 +1,10 @@
 ﻿@model SharedWebComponents.Models.TestViewModel
 
 <!--@@model FakeNamespace.FakeClass');//remove model declaration above to test model parser-->
-<div style="background-color: lightgoldenrodyellow">
+<div class="lightgoldenrodyellow">
     <span>@(Model.Greeting), I'm a test partial view</span>
 </div>
+@Scripts.Render("~/SharedScripts/test.js")@*test external script inclusion*@
 <script type="text/javascript">
     (function ($) {
         if (!$) {
