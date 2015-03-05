@@ -8,7 +8,7 @@ namespace SharedWebComponents.VirtualFileRouting {
     public class CustomVirtualPathProvider : VirtualPathProvider {
         static bool IsEmbeddedResourcePath(string virtualPath) {
             var appRelativePath = VirtualPathUtility.ToAppRelative(virtualPath);
-            var result = appRelativePath.Contains("/SharedWebComponents/") || appRelativePath.Contains("/SS/") || appRelativePath.Contains("/SC/");
+            var result = appRelativePath.Contains("/SharedWebComponents/");
             return result;
         }
 

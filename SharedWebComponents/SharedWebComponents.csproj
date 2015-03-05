@@ -170,12 +170,12 @@
       <EmbeddedResource Include="Views\**\*.cshtml" />
     </ItemGroup>
     <ItemGroup>
-      <Content Remove="SharedScripts\**\*.js" />
-      <EmbeddedResource Include="SharedScripts\**\*.js" />
+      <Content Remove="Scripts\**\*.js" />
+      <EmbeddedResource Include="Scripts\**\*.js" />
     </ItemGroup>
     <ItemGroup>
-      <Content Remove="SharedContent\**\*.css" />
-      <EmbeddedResource Include="SharedContent\**\*.css" />
+      <Content Remove="Content\**\*.css" />
+      <EmbeddedResource Include="Content\**\*.css" />
     </ItemGroup>
   </Target>
   <ProjectExtensions>
