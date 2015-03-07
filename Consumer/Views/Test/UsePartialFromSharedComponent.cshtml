@@ -1,0 +1,9 @@
+﻿@model Consumer.Models.TestViewModel
+
+<div style="background-color: lightgreen; padding: 20px">
+    <span>Oh hey, look at this greeting: @(Model.AnotherGreeting)</span>
+    <br />
+    <span>Here is the shared view:</span>
+    <br />
+    @Html.Partial("Test", Model.Shared)
+</div>
