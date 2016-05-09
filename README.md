@@ -12,7 +12,7 @@
 - overwrite action from shared component project controller
 	1. navigate to /TestOverwrite
 - use layout from web project along with partial from shared component project
-	1. naviate to /TestViewWithWebLayoutAndSharedComponentPartial
+	1. navigate to /Test/TestViewWithWebLayoutAndSharedComponentPartial *Problem here is that ViewStart requests will fail*
 
 **Behavior:**
 

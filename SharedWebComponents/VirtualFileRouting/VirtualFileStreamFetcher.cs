@@ -11,6 +11,10 @@ namespace SharedWebComponents.VirtualFileRouting {
                 manifestResourceStream = GetByResourceName(assembly, fileName);
             }
             if (manifestResourceStream == null) {
+                if (resourceName.Contains("ViewStart")) {
+                    //todo: need to handle this like MVC does
+                    return null;
+                }
                 throw new Exception("Failed to find resource: " + resourceName);
             }
             var result = manifestResourceStream;

@@ -6,7 +6,7 @@ namespace Consumer.Controllers {
         [HttpGet]
         public override ActionResult Index() {
             var viewModel = new SharedWebComponents.Models.TestViewModel("Hello from Web Project");
-            return PartialView("Test", viewModel);
+            return View("Test", viewModel);
         }
 
         [HttpGet]
